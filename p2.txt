@@ -1,0 +1,44 @@
+<DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> </script>
+<body>
+<script>
+var app=angular.module("myShoppingList",[]);
+app.controller("myCtrl",function($scope)
+                  {
+                          $scope.product=["milk","bread","cheese"];
+                          $scope.additem=function()
+                          {
+                              $scope.errortext=" ";
+                                if(!$scope.addme){return;}
+                                if($scope.products.indexOf($scope.addme)==-1)
+                                     {
+                                          $scope.products.push($scope.addme);
+                                      }
+                                else
+                                   {
+                                       $scope.errortext="the item is already present";
+                                    }
+                           }
+                        $scope.removeitem=function(x)
+                            {
+                                $scope.errortext="";
+                                $scope.product.splice(x,1);
+                             }
+                   }
+                   );
+</script>
+<div ng-app="myShoppingList" ng-controller="myCtrl">
+<ul>
+<li ng-repeat="x in products">{{x}}
+<span ng-click="removeitem($index)">x</span></li>
+</ul>
+<inpur ng-model="addme">
+<button ng-click="additem();>add</button>
+<p>{{errortext}}</p>
+</div>
+<p>try toadd sameitem twice</p>
+</body>
+</html>
+
+                  
